@@ -1,0 +1,94 @@
+ class Game   
+ {
+     rolls;								// An array to store the number of pins knocked down in each roll
+     currentRoll;						//A variable to keep track of current roll
+     
+	 constructor(rolls)					
+     {
+         this.rolls=[];
+         this.currentRoll = 0;
+     }
+     
+	 roll(pins) {						// This function will record the number of pins knocked down in current roll
+		this.rolls[this.currentRoll++] = pins;
+	}
+    
+	Score_total()						// This function will check if there was a Strike or Spare and calculate the total alongwith bonus of each frame
+    {
+        let score = 0;
+        let frameIndex = 0;
+        let frameScore;
+    
+    for (let frame = 0; frame < 10; frame++) { 				 // To iterate through each frame
+              
+        if (this.Spare(frameIndex)) { 						// check if there was a spare in current frame
+            score+=10+this.rolls[frameIndex+2];
+			frameIndex+=2;
+			console.log(score);
+        } 
+    
+        else if (this.Strike(frameIndex)) { // Strike 		//check if there was a strike in current frame
+            score+=10+this.rolls[frameIndex+1]+this.rolls[frameIndex+2];
+            frameIndex+=1;
+            console.log(score);
+        }
+    
+        else {												// will calculate total score if there was a no spare or strike in current frame
+            score+=this.rolls[frameIndex]+this.rolls[frameIndex+1];
+			frameIndex+=2;
+			console.log(score);
+        }
+    }
+    
+	return score;
+    
+}
+
+	Strike(frameIndex)											// To check if all 10 pins are knocked in one roll
+
+	{
+		return this.rolls[frameIndex]===10;
+	}
+
+	Spare(frameIndex)											// To check if all pins knocked down in two rolls
+
+	{
+		return ((this.rolls[frameIndex]+this.rolls[frameIndex+1])===10 && this.rolls[frameIndex]!== 10);
+	}
+
+	Score(frameIndex)											// To return total of frame if there is no spare/strike
+
+	{
+		return (this.rolls[frameIndex]+this.rolls[frameIndex+1]);
+	}
+    
+}
+
+
+
+
+let roll_pin = new Game();   								// create a new Game Object
+
+// Record number pins knocked down in each roll
+
+roll_pin.roll(1);
+roll_pin.roll(4);
+roll_pin.roll(4);
+roll_pin.roll(5);
+roll_pin.roll(6);
+roll_pin.roll(4);
+roll_pin.roll(5);
+roll_pin.roll(5);
+roll_pin.roll(10);
+roll_pin.roll(0);
+roll_pin.roll(1);
+roll_pin.roll(7);
+roll_pin.roll(3);
+roll_pin.roll(6);
+roll_pin.roll(4);
+roll_pin.roll(10);
+roll_pin.roll(2);
+roll_pin.roll(8);
+roll_pin.roll(6);
+
+console.log(roll_pin.Score_total());

@@ -91,4 +91,4 @@ roll_pin.roll(2);
 roll_pin.roll(8);
 roll_pin.roll(6);
 
-console.log(roll_pin.Score_total());
+console.log("Total Score is " +roll_pin.Score_total());

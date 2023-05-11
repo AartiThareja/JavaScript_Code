@@ -1,0 +1,31 @@
+class Shape {
+  name;
+  sides;
+  sideLength;
+constructor(name, sides, sideLength)
+{
+this.name=name;
+this.sides=sides;
+this.sideLength=sideLength;
+}
+ calcPerimeter()
+{
+console.log("Perimeter is total of all sides");
+let perimeter = 0;
+     for (let i =0; i<this.sideLength; i++)
+{
+perimeter+=this.sideLength;
+}
+console.log("Perimeter of shape " + this.name + " is " +perimeter);
+}
+}
+const shape_square = new Shape("square", 4 , 4);
+shape_square.calcPerimeter();
+console.log(shape_square);
+
+const shape_triangle = new Shape("triangle", 3 , 7);
+shape_triangle.calcPerimeter();
+console.log(shape_triangle);
+
+
+    
